@@ -1,21 +1,35 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm.js';
 import ImagePopup from './ImagePopup.js';
+import api from '../utils/Api.js';
 
 function Main(props) {
+  const [userName, setUserName] = React.useState(''); //name имя
+  const [userDescription, setUserDescription] = React.useState(''); // job занятие
+  const [userAvatar, setUserAvatar] = React.useState('')
+
+  React.useEffect(() => {
+    api.getItems('users/me').then(data => {
+      setUserName(data.name);
+      setUserDescription(data.about)
+      setUserAvatar(data.avatar)
+    })
+  })
+
+
 
   return (
 <main>
       <section className="profile">
         <div className="profile__group">
-          <img src="images/user_foto.jpg" className="profile__avatar" alt="фото" onClick={props.onEditAvatar}/>
+          <img src={userAvatar} className="profile__avatar" alt="фото" onClick={props.onEditAvatar}/>
           <div className="profile__avatar_pencil"></div>
         </div>
         
         <div className="profile__info">
           <div className="profile__wrapper">
-            <h1 className="profile__title">Жак-Ив Кусто</h1>
-            <p className="profile__subtitle">Исследователь океана</p></div>
+            <h1 className="profile__title">{userName}</h1>
+            <p className="profile__subtitle">{userDescription}</p></div>
             <button type="button" className="profile__edit-button" onClick={props.onEditProfile}></button>
           </div>
           <button type="button" className="profile__add-button" onClick={props.onAddPlace}></button>

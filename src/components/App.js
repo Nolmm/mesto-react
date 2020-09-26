@@ -6,26 +6,26 @@ import Main from './Main.js';
 import Footer from './Footer.js';
 
 function App() {
-  const [isEditProfilePopupOpen, setisEditProfilePopupOpen] = React.useState(false);
-  const [isAddPlacePopupOpen, setisAddPlacePopupOpen] = React.useState(false);
-  const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
 
   function handleEditAvatarClick() {
-    setisEditAvatarPopupOpen(true)
+    setIsEditAvatarPopupOpen(true)
   }
 
   function handleEditProfileClick() {
-    setisEditProfilePopupOpen(true)
+    setIsEditProfilePopupOpen(true)
   }
 
 function handleAddPlaceClick() {
-  setisAddPlacePopupOpen(true)
+  setIsAddPlacePopupOpen(true)
 }
 
 function closeAllPopups() {
-  setisEditAvatarPopupOpen(false);
-  setisEditProfilePopupOpen(false);
-  setisAddPlacePopupOpen(false);
+  setIsEditAvatarPopupOpen(false);
+  setIsEditProfilePopupOpen(false);
+  setIsAddPlacePopupOpen(false);
 }
 
 
