@@ -9,6 +9,7 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState({});
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true)
@@ -22,15 +23,20 @@ function handleAddPlaceClick() {
   setIsAddPlacePopupOpen(true)
 }
 
+function handleCardClick(value) {
+  setSelectedCard(value)
+}
+
 function closeAllPopups() {
   setIsEditAvatarPopupOpen(false);
   setIsEditProfilePopupOpen(false);
   setIsAddPlacePopupOpen(false);
+  setSelectedCard({});
 }
 
 
   return (
-    <body className="page">
+    <div className="page">
     <Header />
     <Main 
     onEditAvatar={handleEditAvatarClick} 
@@ -40,25 +46,12 @@ function closeAllPopups() {
     isAddPlacePopupOpen={isAddPlacePopupOpen}
     isEditAvatarPopupOpen={isEditAvatarPopupOpen}
     onClose={closeAllPopups}
+    onCardClick={handleCardClick}
+    card={selectedCard}
     />
     <Footer />
-    <template id = "template-element" className="card-template">
-      <li className="elements__list-item">
-            <figure className="elements__figure">
-              <button  type="reset" className="elements__trash"></button>
-              <img className="elements__image" src="#" alt=""/>
-              <figcaption className="elements__figcaption">
-                <h3 className="elements__title"></h3>
-                <div className="elements__like_group">
-                    <button type="button" className="elements__like"></button>
-                    <span className="elements__like_number"></span>
-                </div>
-              
-              </figcaption>
-            </figure>
-          </li>
-    </template>
-</body>
+    
+</div>
   );
 }
 

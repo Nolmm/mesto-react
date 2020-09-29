@@ -2,11 +2,13 @@ import React from 'react';
 import PopupWithForm from './PopupWithForm.js';
 import ImagePopup from './ImagePopup.js';
 import api from '../utils/Api.js';
+import Card from './Card.js';
 
 function Main(props) {
   const [userName, setUserName] = React.useState(''); //name имя
   const [userDescription, setUserDescription] = React.useState(''); // job занятие
-  const [userAvatar, setUserAvatar] = React.useState('')
+  const [userAvatar, setUserAvatar] = React.useState('');
+  const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
     api.getItems('users/me').then(data => {
@@ -16,13 +18,20 @@ function Main(props) {
     })
   })
 
+  React.useEffect(() => {
+    api.getItems('cards').then(data => {
+      setCards(data)
+    }, []
+      )
+  })
+
 
 
   return (
 <main>
       <section className="profile">
-        <div className="profile__group">
-          <img src={userAvatar} className="profile__avatar" alt="фото" onClick={props.onEditAvatar}/>
+        <div className="profile__group" onClick={props.onEditAvatar}>
+          <img src={userAvatar} className="profile__avatar" alt="фото"/>
           <div className="profile__avatar_pencil"></div>
         </div>
         
@@ -36,8 +45,12 @@ function Main(props) {
       </section>
       <section className="elements">
         <ul className="elements__list">
+          {cards.map((card, i)=> (
+        <Card key={i} card={card} onCardClick={props.onCardClick} />
+          ))}
         </ul>
       </section>
+
       <PopupWithForm name="edit-profile" title="Редактировать профиль" Formname="edit-form" children={
         <>
         <input type="text" name="name" id="name-input" className="popup__item popup__item_name" required minLength="2" maxLength="40" placeholder="Имя"/>
@@ -59,7 +72,10 @@ function Main(props) {
         ButtonTitle="Создать" isOpen={props.isAddPlacePopupOpen} onClose={props.onClose}
         />
    
-    <ImagePopup />
+    <ImagePopup 
+    card={props.card} 
+    onClose={props.onClose}/>
+    
     <PopupWithForm name="question" title="Вы уверены?" ButtonTitle="Да"/>
     <PopupWithForm name="editavatar" title="Обновить аватар" Formname="edit-avatar" children={
       <>
