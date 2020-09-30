@@ -19,39 +19,39 @@ function App() {
     setIsEditProfilePopupOpen(true)
   }
 
-function handleAddPlaceClick() {
-  setIsAddPlacePopupOpen(true)
-}
+  function handleAddPlaceClick() {
+    setIsAddPlacePopupOpen(true)
+  }
 
-function handleCardClick(value) {
-  setSelectedCard(value)
-}
+  function handleCardClick(value) {
+    setSelectedCard(value)
+  }
 
-function closeAllPopups() {
-  setIsEditAvatarPopupOpen(false);
-  setIsEditProfilePopupOpen(false);
-  setIsAddPlacePopupOpen(false);
-  setSelectedCard({});
-}
+  function closeAllPopups() {
+    setIsEditAvatarPopupOpen(false);
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setSelectedCard({});
+  }
 
 
   return (
     <div className="page">
-    <Header />
-    <Main 
-    onEditAvatar={handleEditAvatarClick} 
-    onEditProfile={handleEditProfileClick} 
-    onAddPlace={handleAddPlaceClick}
-    isEditProfilePopupOpen={isEditProfilePopupOpen}
-    isAddPlacePopupOpen={isAddPlacePopupOpen}
-    isEditAvatarPopupOpen={isEditAvatarPopupOpen}
-    onClose={closeAllPopups}
-    onCardClick={handleCardClick}
-    card={selectedCard}
-    />
-    <Footer />
-    
-</div>
+      <Header />
+      <Main
+        onEditAvatar={handleEditAvatarClick}
+        onEditProfile={handleEditProfileClick}
+        onAddPlace={handleAddPlaceClick}
+        isEditProfilePopupOpen={isEditProfilePopupOpen}
+        isAddPlacePopupOpen={isAddPlacePopupOpen}
+        isEditAvatarPopupOpen={isEditAvatarPopupOpen}
+        onClose={closeAllPopups}
+        onCardClick={handleCardClick}
+        card={selectedCard}
+      />
+      <Footer />
+
+    </div>
   );
 }
 
