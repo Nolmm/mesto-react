@@ -3,43 +3,54 @@ import PopupWithForm from './PopupWithForm.js';
 import ImagePopup from './ImagePopup.js';
 import api from '../utils/Api.js';
 import Card from './Card.js';
+import {CurrentUserContext} from '../contexts/CurrentUserContext.js'
 
 function Main(props) {
-  const [userName, setUserName] = React.useState(''); //name имя
-  const [userDescription, setUserDescription] = React.useState(''); // job занятие
-  const [userAvatar, setUserAvatar] = React.useState('');
+  //const [userName, setUserName] = React.useState(''); //name имя
+  //const [userDescription, setUserDescription] = React.useState(''); // job занятие
+  //const [userAvatar, setUserAvatar] = React.useState('');
   const [cards, setCards] = React.useState([]);
+  const currentUser = React.useContext(CurrentUserContext)
+
+  // React.useEffect(() => {
+  //   Promise.all([api.getItems('cards'), api.getItems('users/me')])
+  //     .then(([cardsData, userData]) => {
+  //       setCards(cardsData);
+  //       setUserName(userData.name);
+  //       setUserDescription(userData.about);
+  //       setUserAvatar(userData.avatar)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err)
+  //     })
+  // },
+  //   []
+  // )
 
   React.useEffect(() => {
-    Promise.all([api.getItems('cards'), api.getItems('users/me')])
-      .then(([cardsData, userData]) => {
-        setCards(cardsData);
-        setUserName(userData.name);
-        setUserDescription(userData.about);
-        setUserAvatar(userData.avatar)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    api.getItems('cards').then(cardsData => {
+      setCards(cardsData);
+    })
+    .catch((err) => {
+            console.log(err)
+          })
   },
-    []
+  []
   )
-
-
 
 
   return (
     <main>
       <section className="profile">
         <div className="profile__group" onClick={props.onEditAvatar}>
-          <img src={userAvatar} className="profile__avatar" alt="фото" />
+          <img src={currentUser.avatar} className="profile__avatar" alt="фото" />
           <div className="profile__avatar_pencil"></div>
         </div>
 
         <div className="profile__info">
           <div className="profile__wrapper">
-            <h1 className="profile__title">{userName}</h1>
-            <p className="profile__subtitle">{userDescription}</p></div>
+            <h1 className="profile__title">{currentUser.name}</h1>
+            <p className="profile__subtitle">{currentUser.about}</p></div>
           <button type="button" className="profile__edit-button" onClick={props.onEditProfile}></button>
         </div>
         <button type="button" className="profile__add-button" onClick={props.onAddPlace}></button>

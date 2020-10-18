@@ -11,7 +11,7 @@
   right: 15px;
   cursor: pointer;
   transition: .3s ease;
-  display: block;
+  display: none;
 }
 
 .elements__trash:hover {
