@@ -16,6 +16,14 @@ const cardDeleteButtonClassName = (
     props.onCardClick(props.card);
   }
 
+  function handleLikeClick() {
+    props.onCardLike(props.card);
+  }
+
+  function handleDeleteClick() {
+    props.onCardDelete(props.card);
+  }
+
 // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
 const isLiked = props.card.likes.some(i => i._id === currentUser._id);
 
@@ -27,12 +35,12 @@ const cardLikeButtonClassName = (
   return (
     <li className="elements__list-item">
             <figure className="elements__figure">
-              <button  type="reset" className={cardDeleteButtonClassName}></button>
+              <button  type="reset" className={cardDeleteButtonClassName} onClick={handleDeleteClick}></button>
               <img className="elements__image" src={props.card.link} alt={props.card.name} onClick={handleClick}/>
               <figcaption className="elements__figcaption">
                 <h3 className="elements__title">{props.card.name}</h3>
                 <div className="elements__like_group">
-                    <button type="button" className={cardLikeButtonClassName}></button>
+                    <button type="button" className={cardLikeButtonClassName} onClick={handleLikeClick}></button>
                     <span className="elements__like_number">{props.card.likes.length}</span>
                 </div>
               </figcaption>
