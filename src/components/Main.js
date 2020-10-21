@@ -52,7 +52,7 @@ function Main(props) {
 
 function handleCardDelete(card) {
   api.deleteItems(`cards/${card._id}`)
-            .then((newCard) => {
+            .then(() => {
             // Формируем новый массив на основе имеющегося, подставляя в него новую карточку
             const newCards = cards.filter((current) => current._id !== card._id );
             // Обновляем стейт
@@ -84,7 +84,7 @@ function handleCardDelete(card) {
         </ul>
       </section>
 
-      <PopupWithForm name="edit-profile" title="Редактировать профиль" Formname="edit-form" children={
+      {/* <PopupWithForm name="edit-profile" title="Редактировать профиль" Formname="edit-form" children={
         <>
           <input type="text" name="name" id="name-input" className="popup__item popup__item_name" required minLength="2" maxLength="40" placeholder="Имя" />
           <span id="name-input-error" className="popup__input-error">Вы пропустили это поле</span>
@@ -93,7 +93,7 @@ function handleCardDelete(card) {
         </>
       }
         ButtonTitle="Сохранить" isOpen={props.isEditProfilePopupOpen} onClose={props.onClose}
-      />
+      /> */}
       <PopupWithForm name="add-card" title="Новое место" Formname="add-form" children={
         <>
           <input type="text" name="placename" id="place-name-input" placeholder="Название" className="popup__item popupadd__item_place-name" required minLength="1" maxLength="30" />

@@ -6,6 +6,7 @@ import Main from './Main.js';
 import Footer from './Footer.js';
 import {CurrentUserContext} from '../contexts/CurrentUserContext.js'
 import api from '../utils/Api.js'
+import EditProfilePopup from './EditProfilePopup.js'
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
@@ -66,6 +67,15 @@ React.useEffect(() => {
     setSelectedCard({});
   }
 
+  function handleUpdateUser(userData) {
+    api.patchUserInfo('users/me', userData).then(newUserInfo => {
+        setcurrentUser(newUserInfo);
+        closeAllPopups();
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+}
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -75,7 +85,7 @@ React.useEffect(() => {
         onEditAvatar={handleEditAvatarClick}
         onEditProfile={handleEditProfileClick}
         onAddPlace={handleAddPlaceClick}
-        isEditProfilePopupOpen={isEditProfilePopupOpen}
+        // isEditProfilePopupOpen={isEditProfilePopupOpen}
         isAddPlacePopupOpen={isAddPlacePopupOpen}
         isEditAvatarPopupOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
@@ -83,6 +93,8 @@ React.useEffect(() => {
         card={selectedCard}
       />
       <Footer />
+      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
+
 
     </div>
     </CurrentUserContext.Provider>

@@ -31,7 +31,7 @@ class Api {
             },
             body: JSON.stringify({
                 name: /*'Marie Skłodowska Curie',*/value.name,
-                about: /*'Physicist and Chemist'*/value.job
+                about: /*'Physicist and Chemist'*/value.about
             })
         })
             .then(res => {
