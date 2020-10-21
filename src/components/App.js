@@ -7,6 +7,7 @@ import Footer from './Footer.js';
 import {CurrentUserContext} from '../contexts/CurrentUserContext.js'
 import api from '../utils/Api.js'
 import EditProfilePopup from './EditProfilePopup.js'
+import EditAvatarPopup from './EditAvatarPopup.js'
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
@@ -77,6 +78,17 @@ React.useEffect(() => {
     })
 }
 
+function handleUpdateAvatar(userAvatar) {
+  api.patchAvatar('users/me/avatar', userAvatar).then(newUserAvatar => {
+      setcurrentUser(newUserAvatar);
+      closeAllPopups();
+  })
+  .catch((err) => {
+      console.log(err)
+  })
+}
+
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
     <div className="page">
@@ -87,13 +99,14 @@ React.useEffect(() => {
         onAddPlace={handleAddPlaceClick}
         // isEditProfilePopupOpen={isEditProfilePopupOpen}
         isAddPlacePopupOpen={isAddPlacePopupOpen}
-        isEditAvatarPopupOpen={isEditAvatarPopupOpen}
+        //isEditAvatarPopupOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
         onCardClick={handleCardClick}
         card={selectedCard}
       />
       <Footer />
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
+      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
 
 
     </div>

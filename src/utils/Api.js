@@ -71,7 +71,7 @@ class Api {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                avatar: item.link
+                avatar: item.avatar
             })
         })
             .then(res => {

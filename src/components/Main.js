@@ -110,14 +110,14 @@ function handleCardDelete(card) {
         onClose={props.onClose} />
 
       <PopupWithForm name="question" title="Вы уверены?" ButtonTitle="Да" />
-      <PopupWithForm name="editavatar" title="Обновить аватар" Formname="edit-avatar" children={
+      {/* <PopupWithForm name="editavatar" title="Обновить аватар" Formname="edit-avatar" children={
         <>
           <input type="url" id="avatar-input" name="link" placeholder="Ссылка" className="popup__item popup__item_avatar" required minLength="1" />
           <span id="avatar-input-error" className="popup__input-error">Вы пропустили это поле</span>
         </>
       }
         ButtonTitle="Сохранить" isOpen={props.isEditAvatarPopupOpen} onClose={props.onClose}
-      />
+      /> */}
     </main>
   )
 }
