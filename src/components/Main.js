@@ -38,7 +38,7 @@ function Main(props) {
       <ImagePopup
         card={props.card}
         onClose={props.onClose} />
-      <PopupWithForm name="question" title="Вы уверены?" ButtonTitle="Да" />
+      <PopupWithForm name="question" title="Вы уверены?" buttonTitle="Да" />
     </main>
   )
 }

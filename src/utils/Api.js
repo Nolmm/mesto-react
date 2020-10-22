@@ -1,7 +1,7 @@
 class Api {
-    constructor(baseUrl) {
+    constructor(baseUrl, token) {
         this._baseUrl = baseUrl
-        this._token = 'ec958303-2883-4fc9-affb-18ff9d007ba6'
+        this._token = token;
 
     }
 
@@ -116,5 +116,5 @@ class Api {
     }
 }
 
-const api = new Api('https://mesto.nomoreparties.co/v1/cohort-15/')
+const api = new Api('https://mesto.nomoreparties.co/v1/cohort-15/', 'ec958303-2883-4fc9-affb-18ff9d007ba6')
 export default api;

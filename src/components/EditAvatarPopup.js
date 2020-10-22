@@ -13,13 +13,13 @@ function EditAvatarPopup(props) {
     });
   }
   return (
-    <PopupWithForm name="editavatar" title="Обновить аватар" Formname="edit-avatar" children={
+    <PopupWithForm name="editavatar" title="Обновить аватар" formName="edit-avatar" children={
       <>
         <input ref={avatarRef} type="url" id="avatar-input" name="link" placeholder="Ссылка" className="popup__item popup__item_avatar" required minLength="1" />
         <span id="avatar-input-error" className="popup__input-error">Вы пропустили это поле</span>
       </>
     }
-      ButtonTitle="Сохранить" isOpen={props.isOpen} onClose={props.onClose} onSubmit={handleSubmit}
+      buttonTitle="Сохранить" isOpen={props.isOpen} onClose={props.onClose} onSubmit={handleSubmit}
     />
   )
 }

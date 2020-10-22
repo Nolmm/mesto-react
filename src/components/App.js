@@ -18,16 +18,6 @@ function App() {
   const [currentUser, setcurrentUser] = React.useState({})
   const [cards, setCards] = React.useState([]);
 
-  React.useEffect(() => {
-    api.getItems('cards').then(cardsData => {
-      setCards(cardsData);
-    })
-      .catch((err) => {
-        console.log(err)
-      })
-  },
-    []
-  )
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some(i => i._id === currentUser._id);
@@ -38,6 +28,9 @@ function App() {
       const newCards = cards.map((c) => c._id === card._id ? newCard : c);
       // Обновляем стейт
       setCards(newCards);
+    })
+    .catch((err) => {
+      console.log(err)
     });
   }
 
