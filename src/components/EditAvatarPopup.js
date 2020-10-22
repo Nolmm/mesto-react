@@ -4,14 +4,14 @@ import PopupWithForm from './PopupWithForm.js';
 
 function EditAvatarPopup(props) {
   const avatarRef = React.useRef();
-  
+
   function handleSubmit(e) {
     e.preventDefault();
-  
+
     props.onUpdateAvatar({
       avatar: avatarRef.current.value,
     });
-  } 
+  }
   return (
     <PopupWithForm name="editavatar" title="Обновить аватар" Formname="edit-avatar" children={
       <>

@@ -51,8 +51,8 @@ class Api {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: values.placename,
-                link: values.placeimg
+                name: values.name,
+                link: values.link
             })
         })
             .then(res => {
